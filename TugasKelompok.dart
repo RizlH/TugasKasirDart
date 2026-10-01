@@ -1,20 +1,19 @@
-/*
-  Akun:
-  Username: 
-  Password:
-*/
-String klasifikasiTierMl(double stars) {
-  if (stars < 100) {
-    return 'Bronze';
-  } else if (stars >= 100 && stars < 200) {
-    return 'Silver';
-  } else if (stars >= 200 && stars < 300) {
-    return 'Gold';
-  } else {
-    return 'Platinum';
+double hitungTotalBayar(double total, bool member) {
+  double diskon = 0;
+
+  if (total >= 100000) {
+    diskon = member ? 0.15 : 0.10;
   }
+
+  double potongan = total * diskon;
+  if (potongan > 25000) potongan = 25000;
+
+  return total - potongan;
 }
 
-void main(){
-  print(klasifikasiTierMl(150)); 
+void main() {
+  print("80rb non member: ${hitungTotalBayar(80000, false)}");
+  print("150rb non member: ${hitungTotalBayar(150000, false)}");
+  print("150rb member: ${hitungTotalBayar(150000, true)}");
+  print("300rb member: ${hitungTotalBayar(300000, true)}");
 }
